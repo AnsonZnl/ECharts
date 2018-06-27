@@ -12,7 +12,7 @@
 
     </div>
     若在Chrome浏览器下 想要访问本地的data.json文件必须开起一个本地的虚拟服务器以http开头
-    
+    <br>
     <a href="https://www.cnblogs.com/leoxuan/p/6513591.html">原文博客地址：https://www.cnblogs.com/leoxuan/p/6513591.html</a>
     <script>
     var myChart = echarts.init(document.getElementById('main'));
@@ -23,7 +23,7 @@ myChart.setOption({
     },
     tooltip: {},
     legend: {
-        data:['销量']
+        data:['销量','总额度']
     },
     xAxis: {
         data: []
@@ -33,7 +33,13 @@ myChart.setOption({
         name: '销量',
         type: 'bar',
         data: []
-    }]
+    },
+      {
+        name: '总额度',
+        type: 'bar',
+        data: []
+      }
+  ]
 });
 
 // 异步加载数据
@@ -47,6 +53,9 @@ $.get('http://localhost:8082/echartsDemo/example/data.json').done(function (data
             // 根据名字对应到相应的系列
             name: '销量',
             data: data.data
+        },{
+          name: '总额度',
+          data: data.data
         }]
     });
 });
